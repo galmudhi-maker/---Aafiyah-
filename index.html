@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#174D49">
+  <meta name="description" content="عافية، تطبيق عائلي للتوعية الصحية وتنظيم الرعاية اليومية.">
+  <title>عافية | رعايتكم تبدأ هنا</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="عافية - الرئيسية">
+        <span class="brand-mark">ع</span>
+        <span>
+          <strong>عَافِيَة</strong>
+          <small>رعايتكم تبدأ هنا</small>
+        </span>
+      </a>
+      <button class="icon-button" id="installBtn" hidden aria-label="تثبيت التطبيق">↓</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">منصة الرعاية العائلية</span>
+          <h1>صحتكم أولوية،<br><span>وعنايتكم أسلوب حياة.</span></h1>
+          <p>مساحة واحدة تساعد أسرتك على تنظيم الرعاية اليومية والتعرّف على الإرشادات الصحية الموثوقة.</p>
+          <button class="primary-btn" data-go="family">ابدأ بإضافة أفراد أسرتك <span>←</span></button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-circle">
+            <div class="art-cross">+</div>
+            <div class="art-heart">♡</div>
+            <span class="art-dot dot-one"></span>
+            <span class="art-dot dot-two"></span>
+          </div>
+          <span class="art-label">عناية • وعي • اطمئنان</span>
+        </div>
+      </section>
+
+      <section class="welcome-row">
+        <div>
+          <span class="section-kicker">لوحة المتابعة</span>
+          <h2>مرحبًا بك في عافية</h2>
+          <p class="muted">كل ما تحتاجه لرعاية أسرتك في مكان واحد.</p>
+        </div>
+        <div class="date-chip" id="todayDate"></div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-icon mint">♧</span>
+          <span class="stat-number" id="familyCount">0</span>
+          <span class="stat-label">أفراد الأسرة</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon peach">＋</span>
+          <span class="stat-number" id="medicineCount">0</span>
+          <span class="stat-label">الأدوية المسجلة</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon lilac">♡</span>
+          <span class="stat-number" id="moodCount">0</span>
+          <span class="stat-label">تسجيلات العافية</span>
+        </article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">اكتشف خدماتنا</span>
+            <h2>كيف نعتني بكم اليوم؟</h2>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <button class="service-card service-firstaid" data-go="firstaid">
+            <span class="service-symbol">✚</span>
+            <span class="service-title">الإسعافات الأولية</span>
+            <span class="service-desc">إرشادات للتصرف في المواقف الطارئة</span>
+            <span class="service-arrow">←</span>
+          </button>
+
+          <button class="service-card service-medicine" data-go="medicine">
+            <span class="service-symbol">▤</span>
+            <span class="service-title">إدارة الأدوية</span>
+            <span class="service-desc">نظّم مواعيد أدويتك وسجّلها</span>
+            <span class="service-arrow">←</span>
+          </button>
+
+          <button class="service-card service-mood" data-go="mood">
+            <span class="service-symbol">♡</span>
+            <span class="service-title">التوازن النفسي</span>
+            <span class="service-desc">مساحة لتدوين مشاعرك والاهتمام بنفسك</span>
+            <span class="service-arrow">←</span>
+          </button>
+
+          <button class="service-card service-family" data-go="family">
+            <span class="service-symbol">♧</span>
+            <span class="service-title">رعاية الأسرة</span>
+            <span class="service-desc">ملفات الأسرة وتنظيم احتياجاتها</span>
+            <span class="service-arrow">←</span>
+          </button>
+
+          <button class="service-card service-child" data-go="safety">
+            <span class="service-symbol">⌂</span>
+            <span class="service-title">سلامة الطفل</span>
+            <span class="service-desc">قائمة إرشادية لسلامة المنزل</span>
+            <span class="service-arrow">←</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section-block reminder-panel">
+        <div>
+          <span class="section-kicker">متابعة الرعاية</span>
+          <h2>تذكيرك اليوم</h2>
+          <p class="muted" id="reminderSummary">أضيفي الأدوية لتنظيم مواعيدها هنا.</p>
+        </div>
+        <button class="outline-btn" data-go="medicine">عرض السجل</button>
+      </section>
+
+      <section class="section-block trust-note">
+        <span class="trust-icon">✦</span>
+        <div>
+          <strong>المعلومة الصحية الموثوقة تصنع فرقًا</strong>
+          <p>عافية أداة مساعدة للتوعية والتنظيم، ولا تحل محل الطبيب أو المختص الصحي.</p>
+        </div>
+      </section>
+
+      <!-- صفحات الخدمات -->
+      <section class="page-view" id="page-family" hidden>
+        <button class="back-link" data-go="home">→ الرئيسية</button>
+        <span class="section-kicker">ملف الأسرة</span>
+        <h2>أفراد أسرتك</h2>
+        <p class="muted">أنشئ ملفات تنظيمية لمتابعة احتياجات الأسرة اليومية.</p>
+        <form id="familyForm" class="form-card">
+          <label>اسم الفرد</label>
+          <input id="memberName" type="text" maxlength="35" placeholder="مثال: الأم" required>
+          <label>صلة القرابة</label>
+          <select id="memberRelation" required>
+            <option value="">اختاري صلة القرابة</option>
+            <option>الأب</option><option>الأم</option><option>ابن</option>
+            <option>ابنة</option><option>الجد</option><option>الجدة</option>
+            <option>أخرى</option>
+          </select>
+          <button class="primary-btn" type="submit">إضافة إلى الأسرة</button>
+        </form>
+        <div id="familyList" class="record-list"></div>
+      </section>
+
+      <section class="page-view" id="page-medicine" hidden>
+        <button class="back-link" data-go="home">→ الرئيسية</button>
+        <span class="section-kicker">تنظيم العلاج</span>
+        <h2>إدارة الأدوية</h2>
+        <p class="muted">سجّل الأدوية وفق الوصفة الطبية وتعليمات المختص.</p>
+        <form id="medicineForm" class="form-card">
+          <label>اسم الدواء</label>
+          <input id="medicineName" type="text" maxlength="45" placeholder="اسم الدواء" required>
+          <label>لمن هذا الدواء؟</label>
+          <select id="medicineMember" required>
+            <option value="">اختاري فرد الأسرة</option>
+          </select>
+          <label>وقت التذكير</label>
+          <input id="medicineTime" type="time" required>
+          <label>ملاحظة (اختياري)</label>
+          <input id="medicineNote" type="text" maxlength="80" placeholder="مثل: حسب وصف الطبيب">
+          <button class="primary-btn" type="submit">حفظ الدواء</button>
+        </form>
+        <div id="medicineList" class="record-list"></div>
+      </section>
+
+      <section class="page-view" id="page-mood" hidden>
+        <button class="back-link" data-go="home">→ الرئيسية</button>
+        <span class="section-kicker">العناية بالنفس</span>
+        <h2>كيف تشعر اليوم؟</h2>
+        <p class="muted">تسجيل المشاعر قد يساعدك على ملاحظة احتياجاتك بمرور الوقت.</p>
+        <form id="moodForm" class="form-card">
+          <label>اختر الشعور الأقرب لك</label>
+          <div class="mood-options">
+            <label><input type="radio" name="mood" value="سعيد" required><span>😊<small>سعيد</small></span></label>
+            <label><input type="radio" name="mood" value="هادئ"><span>😌<small>هادئ</small></span></label>
+            <label><input type="radio" name="mood" value="متعب"><span>😔<small>متعب</small></span></label>
+            <label><input type="radio" name="mood" value="متوتر"><span>😟<small>متوتر</small></span></label>
+          </div>
+          <label>ملاحظة لنفسك (اختياري)</label>
+          <textarea id="moodNote" maxlength="180" placeholder="اكتب ما ترغب في تذكره..."></textarea>
+          <button class="primary-btn" type="submit">حفظ تسجيل اليوم</button>
+        </form>
+        <div id="moodList" class="record-list"></div>
+        <div class="info-card">
+          <strong>تذكير لطيف</strong>
+          <p>إذا كنت تمر بضيق مستمر، تحدث مع شخص تثق به أو اطلب مساعدة مختص. هذا القسم للتدوين والتوعية وليس للتشخيص.</p>
+        </div>
+      </section>
+
+      <section class="page-view" id="page-firstaid" hidden>
+        <button class="back-link" data-go="home">→ الرئيسية</button>
+        <span class="section-kicker">الوعي وقت الحاجة</span>
+        <h2>دليل الإسعافات الأولية</h2>
+        <p class="muted">معلومات عامة للتوعية، وليست بديلًا عن التدريب الإسعافي المعتمد.</p>
+        <div class="emergency-banner">
+          <strong>في الحالات الطارئة داخل السعودية</strong>
+          <p>اتصل بالهلال الأحمر السعودي على الرقم 997، أو برقم الطوارئ المناسب لموقعك.</p>
+          <a href="tel:997" class="call-btn">اتصال 997</a>
+        </div>
+        <div class="guide-list">
+          <details>
+            <summary>الحروق</summary>
+            <p>أبعد مصدر الحرارة إن أمكن بأمان، وبرّد المنطقة المصابة بماء جارٍ معتدل البرودة لمدة 20 دقيقة. لا تضع الثلج أو وصفات منزلية على الحرق. اطلب المساعدة الطبية للحروق الكبيرة أو العميقة أو التي تصيب الوجه واليدين.</p>
+          </details>
+          <details>
+            <summary>النزيف الشديد</summary>
+            <p>اطلب المساعدة الطارئة فورًا. اضغط مباشرة على موضع النزيف بقطعة قماش نظيفة أو ضمادة، واستمر بالضغط حتى وصول المساعدة. لا تزل جسمًا مغروسًا في الجرح.</p>
+          </details>
+          <details>
+            <summary>فقدان الوعي</summary>
+            <p>اطلب الإسعاف فورًا. تحقق من الاستجابة والتنفس الطبيعي. إذا لم يكن الشخص يتنفس طبيعيًا، اتبع تعليمات موظف الطوارئ وابدأ الإنعاش القلبي الرئوي إذا كنت مدرّبًا أو وفق توجيهاته. لا تعطِ فاقد الوعي طعامًا أو شرابًا.</p>
+          </details>
+          <details>
+            <summary>الاختناق</summary>
+            <p>إذا تعذّر على الشخص التنفس أو الكلام أو السعال بفاعلية، اطلب الطوارئ فورًا واتبع تعليمات المختص. تختلف الإسعافات بحسب العمر والحالة؛ لا تطبق إجراءات لا تعرفها.</p>
+          </details>
+        </div>
+        <p class="source-note">للتعلم والتدريب: ارجع إلى هيئة الهلال الأحمر السعودي والجهات الصحية الرسمية، واحصل على تدريب إسعافات أولية معتمد.</p>
+      </section>
+
+      <section class="page-view" id="page-safety" hidden>
+        <button class="back-link" data-go="home">→ الرئيسية</button>
+        <span class="section-kicker">بيئة منزلية آمنة</span>
+        <h2>سلامة الطفل</h2>
+        <p class="muted">استخدم القائمة لمراجعة بعض احتياطات السلامة المنزلية.</p>
+        <div class="checklist" id="safetyChecklist">
+          <label><input type="checkbox"> حفظ الأدوية ومواد التنظيف بعيدًا عن متناول الأطفال.</label>
+          <label><input type="checkbox"> تثبيت الأثاث الثقيل والأجهزة التي قد تسقط.</label>
+          <label><input type="checkbox"> إبعاد الأدوات الحادة والأشياء الصغيرة عن الأطفال.</label>
+          <label><input type="checkbox"> استخدام وسائل حماية مناسبة للمقابس الكهربائية.</label>
+          <label><input type="checkbox"> عدم ترك الطفل وحده قرب الماء أو في المطبخ.</label>
+          <label><input type="checkbox"> التأكد من سلامة ألعاب الطفل وملاءمتها لعمره.</label>
+        </div>
+        <div class="info-card">
+          <strong>تذكّر</strong>
+          <p>هذه قائمة توعوية عامة، ولا تغني عن الإشراف المستمر أو تطبيق اشتراطات السلامة المعتمدة.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-brand">عَافِيَة <span>♡</span></div>
+      <p>رعاية واعية لحياة أكثر صحة.</p>
+      <small>© 2026 عافية | نموذج توعوي تجريبي</small>
+    </footer>
+
+    <nav class="bottom-nav" aria-label="التنقل الرئيسي">
+      <button class="nav-item active" data-go="home"><span>⌂</span><small>الرئيسية</small></button>
+      <button class="nav-item" data-go="family"><span>♧</span><small>الأسرة</small></button>
+      <button class="nav-item" data-go="medicine"><span>▤</span><small>الأدوية</small></button>
+      <button class="nav-item" data-go="mood"><span>♡</span><small>العافية</small></button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
